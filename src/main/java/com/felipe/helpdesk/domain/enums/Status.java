@@ -1,4 +1,4 @@
-package com.felipe.helpdesk.enums;
+package com.felipe.helpdesk.domain.enums;
 
 public enum Status {
 

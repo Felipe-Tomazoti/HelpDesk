@@ -1,13 +1,13 @@
-package com.felipe.helpdesk.enums;
+package com.felipe.helpdesk.domain.enums;
 
-public enum Perfil {
+public enum Prioridade {
 
-    ADMIN(0, "ROLE_ADMIN"), ClIENTE(1, "ROLE_ClIENTE"), TECNICO(2, "ROLE_TECNICO");
+    BAIXA(0, "BAIXA"), MEDIA(1, "MEDIA"), ALTA(2, "ALTA");
 
     private Integer codigo;
     private String descricao;
 
-    Perfil(Integer codigo, String descricao) {
+    Prioridade(Integer codigo, String descricao) {
         this.codigo = codigo;
         this.descricao = descricao;
     }
@@ -20,17 +20,17 @@ public enum Perfil {
         return codigo;
     }
 
-    public static Perfil toEnum(Integer cod) {
+    public static Prioridade toEnum(Integer cod) {
         if (cod == null) {
             return null;
         }
 
-        for(Perfil x : Perfil.values()) {
+        for(Prioridade x : Prioridade.values()) {
             if (cod.equals(x.getCodigo())) {
                 return x;
             }
         }
 
-        throw new IllegalArgumentException(("Perfil Inválido"));
+        throw new IllegalArgumentException(("Prioridade Inválida"));
     }
 }

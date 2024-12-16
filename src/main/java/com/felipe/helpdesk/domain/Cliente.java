@@ -2,7 +2,6 @@ package com.felipe.helpdesk.domain;
 
 import com.felipe.helpdesk.domain.enums.Perfil;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;

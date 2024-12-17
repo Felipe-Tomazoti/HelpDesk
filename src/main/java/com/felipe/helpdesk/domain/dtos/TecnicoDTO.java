@@ -24,6 +24,7 @@ public class TecnicoDTO {
 
     public TecnicoDTO() {
         super();
+        addPerfil(Perfil.ClIENTE);
     }
 
     public TecnicoDTO(Tecnico obj) {
@@ -34,6 +35,7 @@ public class TecnicoDTO {
         this.email = obj.getEmail();
         this.nome = obj.getNome();
         this.id = obj.getId();
+        addPerfil(Perfil.ClIENTE);
     }
 
     public LocalDate getDataCriacao() {

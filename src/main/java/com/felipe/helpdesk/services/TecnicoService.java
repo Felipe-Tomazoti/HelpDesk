@@ -23,7 +23,7 @@ public class TecnicoService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    public Tecnico findById(Integer id){
+    public Tecnico findById(Integer id) {
         Optional<Tecnico> obj = tecnicoRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id));
     }
@@ -44,7 +44,15 @@ public class TecnicoService {
         validaPorCpfEEmail(objDTO);
         Tecnico oldObj = findById(id);
         oldObj = new Tecnico(objDTO);
-       return tecnicoRepository.save(oldObj);
+        return tecnicoRepository.save(oldObj);
+    }
+
+    public void delete(Integer id) {
+        Tecnico obj = findById(id);
+        if (obj.getChamados().size() > 0) {
+            throw new DataIntegrityViolationException("Técnico possui ordens de serviço e não pode ser deletado!");
+        }
+        tecnicoRepository.deleteById(id);
     }
 
     private void validaPorCpfEEmail(TecnicoDTO objDTO) {
@@ -54,7 +62,7 @@ public class TecnicoService {
         }
 
         obj = pessoaRepository.findByEmail(objDTO.getEmail());
-        if (obj.isPresent() && obj.get().getId() != objDTO.getId()){
+        if (obj.isPresent() && obj.get().getId() != objDTO.getId()) {
             throw new DataIntegrityViolationException("E-mail já cadastrado no sistema!");
         }
     }

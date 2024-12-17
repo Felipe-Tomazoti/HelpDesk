@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -25,6 +27,19 @@ public class ResourceExceptionHandler {
         StandardError error = new StandardError(request.getRequestURI(), ex.getMessage(), "Violação de dados",
                 HttpStatus.BAD_REQUEST.value(), System.currentTimeMillis());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ValidationError> validationErrors(MethodArgumentNotValidException ex, HttpServletRequest request){
+
+        ValidationError errors = new ValidationError(request.getRequestURI(), "Erro na validação dos campos", "Validation Error",
+                HttpStatus.BAD_REQUEST.value(), System.currentTimeMillis());
+
+        for (FieldError x : ex.getBindingResult().getFieldErrors()){
+            errors.addError(x.getField(), x.getDefaultMessage());
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
 }

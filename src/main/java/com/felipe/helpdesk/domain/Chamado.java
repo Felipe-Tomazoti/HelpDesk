@@ -1,6 +1,7 @@
 package com.felipe.helpdesk.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.felipe.helpdesk.domain.dtos.ChamadoDTO;
 import com.felipe.helpdesk.domain.enums.Prioridade;
 import com.felipe.helpdesk.domain.enums.Status;
 import jakarta.persistence.*;

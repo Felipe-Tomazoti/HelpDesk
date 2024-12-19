@@ -1,6 +1,7 @@
 package com.felipe.helpdesk.config;
 
 import com.felipe.helpdesk.security.JWTAuthenticationFilter;
+import com.felipe.helpdesk.security.JWTAuthorizationFilter;
 import com.felipe.helpdesk.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -21,6 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -54,6 +58,7 @@ public class SecurityConfig {
                         .requestMatchers("/h2-console/**", "/login").permitAll()
                         .anyRequest().authenticated())
                 .addFilter(new JWTAuthenticationFilter(authenticationManager, jwtUtil))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager, jwtUtil, userDetailsService))
                 .httpBasic(Customizer.withDefaults());
 
         return http.build();

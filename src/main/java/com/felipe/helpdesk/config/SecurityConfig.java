@@ -3,6 +3,7 @@ package com.felipe.helpdesk.config;
 import com.felipe.helpdesk.security.JWTAuthenticationFilter;
 import com.felipe.helpdesk.security.JWTAuthorizationFilter;
 import com.felipe.helpdesk.security.JWTUtil;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
@@ -53,6 +56,32 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((req, res, authException) -> {
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            String date = sdf.format(new Date().getTime());
+                            res.setContentType("application/json");
+                            res.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401
+                            res.getWriter().write("{"
+                                    + "\"timestamp\": \"" + date + "\","
+                                    + "\"error\": \"Unauthorized\","
+                                    + "\"message\": \"Token inválido ou não fornecido\","
+                                    + "\"path\": \"" + req.getRequestURI() + "\""
+                                    + "}");
+                        })
+                        .accessDeniedHandler((req, res, accessDeniedException) -> {
+                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                            String date = sdf.format(new Date().getTime());
+                            res.setContentType("application/json");
+                            res.setStatus(HttpServletResponse.SC_FORBIDDEN); // 403
+                            res.getWriter().write("{"
+                                    + "\"timestamp\": \"" + date + "\","
+                                    + "\"error\": \"Forbidden\","
+                                    + "\"message\": \"Você não tem permissão para acessar este recurso\","
+                                    + "\"path\": \"" + req.getRequestURI() + "\""
+                                    + "}");
+                        })
+                )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/h2-console/**", "/login").permitAll()

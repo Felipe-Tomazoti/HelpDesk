@@ -32,7 +32,7 @@ public class DBService {
         Tecnico tec1 = new Tecnico(encoder.encode("321"), "valdir@mail.com", "55653080039", "Valdir Cezar", null);
         tec1.addPerfil(Perfil.ADMIN);
 
-        Tecnico tec2 = new Tecnico(encoder.encode("321"), "moacir@mail.com", "21171887027", "Valdir Cezar", null);
+        Tecnico tec2 = new Tecnico(encoder.encode("321"), "moacir@mail.com", "21171887027", "Moacir", null);
         tec1.addPerfil(Perfil.TECNICO);
 
         Cliente cli1 = new Cliente(encoder.encode("321"), "torvalds@mail.com", "99799820049", "Linus Torvalds", null);

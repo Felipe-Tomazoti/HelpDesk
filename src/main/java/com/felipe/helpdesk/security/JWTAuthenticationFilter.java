@@ -11,11 +11,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -50,23 +47,4 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setHeader("Authorization", "Bearer " + token);
     }
 
-    @Override
-    protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        System.out.println("Erro aquiAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA ");
-        PrintWriter out = response.getWriter();
-        response.setContentType("application/json");
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        out.write(json().toString());
-        out.flush();
-    }
-
-    private CharSequence json() {
-        long date = new Date().getTime();
-        return "{"
-                + "\"timestamp\": " + date + ","
-                + "\"status\": 403, "
-                + "\"error\": \"Não autorizado\", "
-                + "\"message\":\"Email ou senha invalídos\", "
-                + "\"path\": \"/login\"}";
-    }
 }

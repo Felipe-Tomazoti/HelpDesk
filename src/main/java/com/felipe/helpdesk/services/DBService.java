@@ -29,13 +29,13 @@ public class DBService {
 
 
     public void instanciaDB(){
-        Tecnico tec1 = new Tecnico(encoder.encode("321"), "valdir@mail.com", "55653080039", "Valdir Cezar", null);
+        Tecnico tec1 = new Tecnico(encoder.encode("123"), "valdir@mail.com", "55653080039", "Valdir Cezar", null);
         tec1.addPerfil(Perfil.ADMIN);
 
-        Tecnico tec2 = new Tecnico(encoder.encode("321"), "moacir@mail.com", "21171887027", "Moacir", null);
+        Tecnico tec2 = new Tecnico(encoder.encode("123"), "moacir@mail.com", "21171887027", "Moacir", null);
         tec1.addPerfil(Perfil.TECNICO);
 
-        Cliente cli1 = new Cliente(encoder.encode("321"), "torvalds@mail.com", "99799820049", "Linus Torvalds", null);
+        Cliente cli1 = new Cliente(encoder.encode("123"), "torvalds@mail.com", "99799820049", "Linus Torvalds", null);
 
         Chamado c1 = new Chamado(cli1,tec1, "Primeiro chamado", "Chamado 01", Status.ANDAMENTO, Prioridade.MEDIA, null);
 

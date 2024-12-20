@@ -5,7 +5,6 @@ import com.felipe.helpdesk.config.exceptions.AuthorizationException;
 import com.felipe.helpdesk.security.JWTAuthenticationFilter;
 import com.felipe.helpdesk.security.JWTAuthorizationFilter;
 import com.felipe.helpdesk.security.JWTUtil;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

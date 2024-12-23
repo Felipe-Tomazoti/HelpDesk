@@ -46,6 +46,11 @@ public class TecnicoService {
         objDTO.setId(id);
         validaPorCpfEEmail(objDTO);
         Tecnico oldObj = findById(id);
+
+        if(!objDTO.getSenha().equals(oldObj.getSenha())) {
+            objDTO.setSenha(encoder.encode(objDTO.getSenha()));
+        }
+
         oldObj = new Tecnico(objDTO);
         return tecnicoRepository.save(oldObj);
     }

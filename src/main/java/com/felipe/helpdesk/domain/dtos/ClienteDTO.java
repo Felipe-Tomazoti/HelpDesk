@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.felipe.helpdesk.domain.Cliente;
 import com.felipe.helpdesk.domain.enums.Perfil;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -19,6 +20,7 @@ public class ClienteDTO {
     @NotNull(message = "O campo EMAIL é requerido")
     protected String email;
     @NotNull(message = "O campo CPF é requerido")
+    @CPF
     protected String cpf;
     @NotNull(message = "O campo SENHA é requerido")
     protected String senha;

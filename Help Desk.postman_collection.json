@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "a5412221-4090-454c-9a9e-627df0cb8610",
+		"name": "Help Desk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "37898847"
+	},
+	"item": [
+		{
+			"name": "Tecnico",
+			"item": [
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/tecnicos/2"
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/tecnicos"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtb2FjaXJAbWFpbC5jb20iLCJleHAiOjE3MzQ2NDIyOTZ9.dAkoxHEwR-Hu3Wgqscws4LIa_zM2kWW1XouqCgRZqJt5ypL-s7WoOy5ParxhFUx-NP-PNwLXoxBpTFBBA8ZR-Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Valdir Cezar123\",\r\n    \"email\": \"valdir123@mail.com\",\r\n    \"cpf\": \"13267998948\",\r\n    \"senha\": \"daw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/tecnicos"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \r\n    \"id\":\"3\",\r\n    \"nome\": \"Valdir Cezar123\",\r\n    \"email\": \"valdir@mail.com\",\r\n    \"cpf\": \"55653080039\",\r\n    \"senha\": \"123123\",\r\n    \"perfis\": [\r\n        0\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/tecnicos/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/tecnicos/3"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "findById",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/clientes/3"
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b3J2YWxkc0BtYWlsLmNvbSIsImV4cCI6MTczNTMwNDU2NX0.nD36VLlLHN0y1bb8UKg3HuQihA1JAXRj13kOgS0cfK3GyFCt-5daJCF1Rs8-0kpx1NwvWnrpkX0TjhHmSlx9pQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"nome\": \"Felipe\",\r\n    \"email\": \"testeteste005@mail.com\",\r\n    \"cpf\": \"881.237.790-46\",\r\n    \"senha\": \"123\",\r\n    \"perfis\": [0,1,2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"valdir@mail.com\",\r\n    \"senha\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/login"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"FelipeCesar123\",\r\n    \"email\": \"FelipeCesar123@mail.com\",\r\n    \"cpf\": \"13267998948\",\r\n    \"senha\": \"12345\",\r\n    \"perfis\": [1, 2]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/clientes/4"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/clientes/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chamado",
+			"item": [
+				{
+					"name": "findById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/chamados/1"
+					},
+					"response": []
+				},
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ0b3J2YWxkc0BtYWlsLmNvbSIsImV4cCI6MTczNTYwODUwNH0.0TlHvSUGsHh3sOkz5KJFY6r0wpRr1GDlMh7fYcH3OJUC8cgAQbbg3lTdzVFDd7u91Oin_FOGOemzR8VY6hDkAg",
+								"type": "text"
+							}
+						],
+						"url": "http://localhost:8080/chamados"
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"prioridade\": 1,\r\n    \"status\": 1,\r\n    \"titulo\": \"Chamado 02 teste\",\r\n    \"observacoes\": \"Segundo chamado\",\r\n    \"tecnico\": 1,\r\n    \"cliente\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/chamados"
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"prioridade\": 1,\r\n    \"status\": 2,\r\n    \"titulo\": \"Chamado 02\",\r\n    \"observacoes\": \"Primeiro chamado\",\r\n    \"tecnico\": 1,\r\n    \"cliente\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/chamados/1"
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/chamados"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "localhost:8080"
+		}
+	]
+}
